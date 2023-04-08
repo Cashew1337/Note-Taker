@@ -2,10 +2,9 @@ const notes = require('express').Router();
 const { v4: uuidv4 } = require('uuid')
 const { readAndAppend, readFromFile, writeToFile } = require('../helpers/fsUtils');
 
-notes.get('/api/notes', (req, res) => {
+notes.get('/', (req, res) => {
     readFromFile('./db/db.json').then((data) =>
-        res.json(JSON.parse(data))
-    );
+        res.json(JSON.parse(data)));
 });
 
 notes.get('/:noteId', (req, res) => {
@@ -15,12 +14,12 @@ notes.get('/:noteId', (req, res) => {
         .then((json) => {
             const results = json.filter((note) => note.noteId === noteId);
             return results.length > 0
-            ? res.json(results)
-            : res.json('No note with requested ID found');
+                ? res.json(results)
+                : res.json('No note with requested ID found');
         });
 });
 
-notes.post('/notes', (req, res) => {
+notes.post('/', (req, res) => {
     console.log(req.body);
 
     const { title, text, noteId } = req.body;
