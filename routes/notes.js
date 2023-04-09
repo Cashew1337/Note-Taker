@@ -8,7 +8,7 @@ notes.get('/', (req, res) => {
 
 notes.get('/:noteId', (req, res) => {
     const noteId = req.params.noteId;
-    readFromFile('../db/db.json')
+    readFromFile('./db/db.json')
         .then((data) => JSON.parse(data))
         .then((json) => {
             const results = json.filter((note) => note.noteId === noteId);
@@ -30,7 +30,7 @@ notes.post('/', (req, res) => {
             noteId: uuidv4(),
         };
 
-        readAndAppend(newNote, '../db/db.json');
+        readAndAppend(newNote, './db/db.json');
         res.json(`Note added`);
     } else {
         res.errored('Issue adding note');
