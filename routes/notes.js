@@ -6,12 +6,12 @@ notes.get('/', (req, res) => {
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
-notes.get('/:noteId', (req, res) => {
-    const noteId = req.params.noteId;
+notes.get('/:id', (req, res) => {
+    const noteId = req.params.id;
     readFromFile('./db/db.json')
         .then((data) => JSON.parse(data))
         .then((json) => {
-            const results = json.filter((note) => note.noteId === noteId);
+            const results = json.filter((note) => note.id === id);
             return results.length > 0
                 ? res.json(results)
                 : res.json('No note with requested ID found');
@@ -21,13 +21,13 @@ notes.get('/:noteId', (req, res) => {
 notes.post('/', (req, res) => {
     console.log(req.body);
 
-    const { title, text, noteId } = req.body;
+    const { title, text, id } = req.body;
 
     if (req.body) {
         const newNote = {
             title,
             text,
-            noteId: uuidv4(),
+            id: uuidv4(),
         };
 
         readAndAppend(newNote, './db/db.json');
@@ -37,12 +37,12 @@ notes.post('/', (req, res) => {
     }
 });
 
-notes.delete('/:noteId', (req, res) => {
+notes.delete('/:id', (req, res) => {
     const noteId = req.params.noteId;
     readFromFile('./db/db.json')
         .then((data) => JSON.parse(data))
         .then((json) => {
-            const results = json.filter((note) => note.noteId !== noteId);
+            const results = json.filter((note) => note.id !== id);
 
             writeToFile('./db/db.json', results);
 
