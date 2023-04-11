@@ -10,6 +10,8 @@
   [Usage](#usage)
 
   [Questions](#questions)
+  
+  [Credits](#credits)
 
 ## Description
 
@@ -33,3 +35,8 @@ If you have any questions, I can be contacted at the following links:
 [Github](https://www.github.com/Cashew1337)
 
 [Email](mailto:mr.matt.caschetto@gmail.com)
+
+## Credits
+
+I received assistance on my code from fellow classmates Kevin M, and Hailey F.
+I also looked back through the lesson for info on how to perform the Delete request.
